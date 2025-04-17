@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Explore Destinations - Travel Explorer</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+        
+        .destinations-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 20px;
+        }
+
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+            gap: 15px;
+            margin-top: 20px;
+            width: 80%; 
+            max-width: 960px; 
+        }
+
+        .country-button {
+            background-color: #f0ad4e; 
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .country-button:hover {
+            background-color: #eea236;
+        }
+
+        .globe-container {
+            position: relative;
+            width: 150px; 
+            height: 150px;
+            margin-bottom: 20px;
+        }
+
+        .globe {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: url('globe2.gif') center/cover no-repeat;
+            animation: spin 5s linear infinite;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .pin {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            background-color: rgb(190, 122, 45);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none; 
+        }
+
+        .navbar {
+            background-color: #f8f8f8;
+            color: #333;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .slogan {
+            font-size: 0.8em;
+            color: #777;
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: #0c505c;
+        }
+
+        .profile-icon {
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo-text">
+            <span class="brand-name">WanderScape</span>
+            <span class="slogan">Wander Freely. Explore Deeply.</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="destinations.html">Destinations</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <div class="profile-icon" onclick="window.location.href='profile.php'">
+            <i class="fas fa-user-circle"></i>
+        </div>
+    </nav>
+
+    <div class="destinations-page">
+        <h2>Explore Destinations</h2>
+
+        <div class="globe-container">
+            <div class="globe"></div>
+            <div class="pin" id="randomPin"></div>
+        </div>
+
+        <div class="destinations-grid">
+            <a href="japan.html" class="country-button">🇯🇵 Japan</a>
+            <a href="italy.html" class="country-button">🇮🇹 Italy</a>
+            <a href="france.html" class="country-button">🇫🇷 France</a>
+            <a href="russia.html" class="country-button">RU Russia</a>
+            <a href="greece.html" class="country-button">🇬🇷 Greece</a>
+            <a href="india.html" class="country-button">🇮🇳 India</a>
+            <a href="egypt.html" class="country-button">🇪🇬 Egypt</a>
+            <a href="spain.html" class="country-button">🇪🇸 Spain</a>
+            <a href="australia.html" class="country-button">🇦🇺 Australia</a>
+            <a href="usa.html" class="country-button">🇺🇸 USA</a>
+        </div>
+    </div>
+
+    <script>
+        function getRandomPosition(element) {
+            const bounds = element.getBoundingClientRect();
+            const x = Math.random() * bounds.width;
+            const y = Math.random() * bounds.height;
+            return { x, y };
+        }
+
+        function placeRandomPin() {
+            const globeContainer = document.querySelector('.globe-container');
+            const pin = document.getElementById('randomPin');
+
+            if (globeContainer && pin) {
+                const position = getRandomPosition(globeContainer);
+                pin.style.left = `${position.x}px`;
+                pin.style.top = `${position.y}px`;
+            }
+        }
+
+        // Place the pin on a random spot when the page loads
+        //window.onload = placeRandomPin;
+
+        //make the pin move to a new random spot periodically (3 secs)
+        setInterval(placeRandomPin, 3000); 
+    </script>
+</body>
+</html>

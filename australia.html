@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WanderScape | Australia</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <style>
+     @import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Quicksand:wght@400;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  background: #f7f9fc;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+nav.navbar {
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name {
+  font-family: 'Marcellus', serif;
+  font-size: 28px;
+  color: #1c4249;
+  font-weight: bold;
+}
+
+.slogan {
+  font-size: 13px;
+  color: #4a727c;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+}
+
+.nav-links li a {
+  color: #1e90ff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.nav-links li a:hover {
+  color: #f4c430;
+}
+
+/* Hero Image Carousel */
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 10px;
+  padding: 20px;
+  background: #eaf1f5;
+}
+
+.carousel img {
+  height: 280px;
+  width: auto;
+  border-radius: 12px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+section {
+  padding: 40px 30px;
+}
+
+section h2 {
+  font-size: 28px;
+  color: #2d2d2d;
+  margin-bottom: 15px;
+  font-family: 'Marcellus', serif;
+}
+
+.section-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+@media(max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  .carousel img {
+    height: 200px;
+  }
+}
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo-text">
+      <span class="brand-name">WanderScape</span>
+      <span class="slogan">Wander Freely. Explore Deeply.</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="destinations.html">Destinations</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="carousel">
+    <img src="imagea1.jfif" alt="Sydney Opera House">
+    <img src="imagea2.jfif" alt="Great Barrier Reef">
+    <img src="imagea3.jfif" alt="Uluru">
+    <img src="imagea4.jfif" alt="Bondi Beach">
+    <img src="imagea5.jfif" alt="Tasmania Wilderness">
+    <img src="imagea6.jfif" alt="Tasmania Wilderness">
+    <img src="imagea7.jfif" alt="Tasmania Wilderness">
+    <img src="imagea8.jfif" alt="Tasmania Wilderness">
+  </div>
+
+  <section>
+    <h2>Basic Info</h2>
+    <div class="section-content">
+      <p>Australia, the land down under, is known for its beautiful beaches, unique wildlife, and outdoor adventures. From the Great Barrier Reef to the Outback, Australia offers unforgettable experiences.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Top Cities</h2>
+    <div class="section-content">
+      <ul>
+        <li>Sydney – Famous for the Opera House and beaches</li>
+        <li>Melbourne – Culture and coffee</li>
+        <li>Brisbane – Gateway to the Great Barrier Reef</li>
+        <li>Perth – Beautiful coastal city</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Best Restaurants</h2>
+    <div class="section-content">
+      <p>From Sydney's seafood restaurants to Melbourne’s vibrant café culture, Australia is a food lover’s paradise.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Hotels</h2>
+    <div class="section-content">
+      <p>Stay at luxury resorts on the Gold Coast or boutique hotels in Melbourne's laneways.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Flights</h2>
+    <div class="section-content">
+      <p>Direct flights to Australia from major international airports in Asia, Europe, and the Americas.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Tourist Spots</h2>
+    <div class="section-content">
+      <ul>
+        <li>Sydney Opera House</li>
+        <li>Great Barrier Reef</li>
+        <li>Uluru</li>
+        <li>Bondi Beach</li>
+        <li>Great Ocean Road</li>
+      </ul>
+    </div>
+  </section>
+
+</body>
+</html>
