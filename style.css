@@ -193,5 +193,17 @@ body {
   .country-links a:hover {
     background-color: #dfa800;
   }
+
+/* Hover effect and shadow for all images */
+img {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition for hover effect */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Initial small shadow */
+}
+
+img:hover {
+    transform: scale(1.05); /* Slightly scale up the image on hover */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Larger shadow on hover */
+    cursor: pointer; /* Change cursor to indicate it's interactive */
+}
   
   
