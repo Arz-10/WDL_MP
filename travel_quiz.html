@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Recommendation Quiz - WanderScape</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Basic quiz styling - you can expand this in your style.css later */
+        .quiz-container {
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .question {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        .options {
+            list-style: none;
+            padding: 0;
+        }
+
+        .options li {
+            margin-bottom: 10px;
+        }
+
+        .option-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #f0ad4e;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-align: left;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .option-button:hover {
+            background-color: #eea236;
+        }
+
+        #results-container {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #eaf1f5;
+            border-radius: 5px;
+            color: #333;
+            display: none; /* Initially hidden */
+        }
+
+        #recommendation {
+            font-weight: bold;
+            color: #0c505c;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo-text">
+            <span class="brand-name">WanderScape</span>
+            <span class="slogan">Wander Freely. Explore Deeply.</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="destinations.html">Destinations</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="travel_quiz.html">Quiz</a></li>
+        </ul>
+        <div class="profile-icon" onclick="window.location.href='profile.php'">
+            <i class="fas fa-user-circle"></i>
+        </div>
+    </nav>
+
+    <div class="quiz-container">
+        <h1>Find Your Ideal Destination</h1>
+        <div id="quiz">
+            </div>
+        <button id="submit-quiz" style="display: none;">Submit Quiz</button>
+        <div id="results-container">
+            <h2>Your Recommendation</h2>
+            <p id="recommendation"></p>
+            <p><a href="destinations.html">Explore More Destinations</a></p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for fetching and handling the quiz will go here
+        const quizContainer = document.getElementById('quiz');
+        const submitButton = document.getElementById('submit-quiz');
+        const resultsContainer = document.getElementById('results-container');
+        const recommendationElement = document.getElementById('recommendation');
+
+        let currentQuestion = 0;
+        let answers = [];
+        let questions = []; // This will be populated by the AJAX call
+
+        function loadQuestion() {
+            if (currentQuestion < questions.length) {
+                const currentQ = questions[currentQuestion];
+                quizContainer.innerHTML = `
+                    <div class="question">${currentQuestion + 1}. ${currentQ.question}</div>
+                    <ul class="options">
+                        ${currentQ.options.map((option, index) => `
+                            <li><button class="option-button" data-index="${index}">${option}</button></li>
+                        `).join('')}
+                    </ul>
+                `;
+
+                const optionButtons = quizContainer.querySelectorAll('.option-button');
+                optionButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        answers[currentQuestion] = this.textContent;
+                        currentQuestion++;
+                        if (currentQuestion < questions.length) {
+                            loadQuestion();
+                        } else {
+                            showSubmitButton();
+                        }
+                    });
+                });
+            } else {
+                // Quiz is over, show the submit button
+                showSubmitButton();
+            }
+        }
+
+        function showSubmitButton() {
+            submitButton.style.display = 'block';
+        }
+
+        function showResults() {
+            // This function will be updated to send data to PHP via AJAX
+            resultsContainer.style.display = 'block';
+            quizContainer.style.display = 'none';
+            submitButton.style.display = 'none';
+            recommendationElement.textContent = "Recommendation will be loaded via AJAX.";
+        }
+
+        submitButton.addEventListener('click', sendAnswersToPHP);
+
+        // Initial call to load the first question (will be triggered after fetching)
+        // loadQuestion();
+    </script>
+</body>
+</html>
