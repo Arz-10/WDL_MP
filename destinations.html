@@ -7,25 +7,70 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <style>
-        
-        .destinations-page {
+        .destinations-container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .destinations-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .destinations-header h2 {
+            color: #0c505c;
+        }
+
+        .globe-animation-container {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 30px 20px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .globe-container {
+            position: relative;
+            width: 120px; /* Adjusted size */
+            height: 120px; /* Adjusted size */
+        }
+
+        .globe {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: url('globe2.gif') center/contain no-repeat; /* Using contain */
+            animation: spin 5s linear infinite;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .pin {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 8px; /* Adjusted size */
+            height: 8px; /* Adjusted size */
+            background-color: rgb(190, 122, 45);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
         }
 
         .destinations-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 15px;
-            margin-top: 20px;
-            width: 80%; 
-            max-width: 960px; 
         }
 
         .country-button {
-            background-color: #f0ad4e; 
+            background-color: #f0ad4e;
             color: white;
             border: none;
             padding: 15px 20px;
@@ -40,39 +85,6 @@
 
         .country-button:hover {
             background-color: #eea236;
-        }
-
-        .globe-container {
-            position: relative;
-            width: 150px; 
-            height: 150px;
-            margin-bottom: 20px;
-        }
-
-        .globe {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: url('globe2.gif') center/cover no-repeat;
-            animation: spin 5s linear infinite;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .pin {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 10px;
-            height: 10px;
-            background-color: rgb(190, 122, 45);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            pointer-events: none; 
         }
 
         .navbar {
@@ -146,12 +158,17 @@
         </div>
     </nav>
 
-    <div class="destinations-page">
-        <h2>Explore Destinations</h2>
+    <div class="destinations-container">
+        <div class="destinations-header">
+            <h2>Explore Destinations</h2>
+            <p>Discover amazing places around the world!</p>
+        </div>
 
-        <div class="globe-container">
-            <div class="globe"></div>
-            <div class="pin" id="randomPin"></div>
+        <div class="globe-animation-container">
+            <div class="globe-container">
+                <div class="globe"></div>
+                <div class="pin" id="randomPin"></div>
+            </div>
         </div>
 
         <div class="destinations-grid">
@@ -188,10 +205,10 @@
         }
 
         // Place the pin on a random spot when the page loads
-        //window.onload = placeRandomPin;
+        window.onload = placeRandomPin;
 
         //make the pin move to a new random spot periodically (3 secs)
-        setInterval(placeRandomPin, 3000); 
+        setInterval(placeRandomPin, 3000);
     </script>
 </body>
 </html>
