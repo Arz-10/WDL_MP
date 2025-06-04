@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login - WanderScape</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h2 style="text-align:center;">Login to WanderScape</h2>
+  <form onsubmit="event.preventDefault(); loginUser();" style="max-width:400px;margin:auto;">
+    <input type="text" id="username" placeholder="Username" required><br>
+    <input type="password" id="password" placeholder="Password" required><br>
+    <button type="submit">Login</button>
+    <p style="text-align:center;">Don't have an account? <a href="register.html">Register</a></p>
+  </form>
+
+  <script>
+    function loginUser() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", "login.php", true);
+      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhr.onload = function () {
+        if (xhr.responseText.trim() === "success") {
+            localStorage.setItem("loggedIn", "true"); 
+          alert("Login Successful!");
+          window.location.href = "index.html";
+        } else {
+          alert("Invalid credentials!");
+        }
+      };
+      xhr.send(`username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`);
+    }
+  </script>
+</body>
+</html>

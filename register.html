@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Register - WanderScape</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h2 style="text-align:center;">Register for WanderScape</h2>
+  <form onsubmit="event.preventDefault(); registerUser();" style="max-width:400px;margin:auto;">
+    <input type="text" id="regUsername" placeholder="Choose username" required><br>
+    <input type="password" id="regPassword" placeholder="Choose password" required><br>
+    <button type="submit">Register</button>
+    <p style="text-align:center;">Already have an account? <a href="login.html">Login</a></p>
+  </form>
+
+  <script>
+    function registerUser() {
+      const username = document.getElementById("regUsername").value;
+      const password = document.getElementById("regPassword").value;
+
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", "register.php", true);
+      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhr.onload = function () {
+        const response = xhr.responseText.trim();
+        if (response === "registered") {
+          alert("Registration successful! Please log in.");
+          window.location.href = "login.html";
+        } else if (response === "exists") {
+          alert("Username already exists. Try another.");
+        } else {
+          alert("Registration failed.");
+        }
+      };
+      xhr.send(`username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`);
+    }
+  </script>
+</body>
+</html>
